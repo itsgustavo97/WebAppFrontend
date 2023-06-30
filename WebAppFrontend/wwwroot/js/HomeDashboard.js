@@ -1,4 +1,14 @@
-﻿const GetClientes = (route = 'Cliente/GetAllAsync') => {
+﻿const SetCostumerModal = (id) => {
+    HttpRequest.GetAsync('Cliente/GetById', { Id: id }, (resp) => {
+        const { id, nombre, apellido, edad, correoElectronico, numeroTelefonico } = resp;
+        console.log(resp);
+        $('#NombreCliente').val(nombre);
+        $('#ApellidoCliente').val(apellido);
+    });
+    
+}
+
+const GetClientes = (route = 'Cliente/GetAllAsync') => {
     HttpRequest.GetAsync(route, null, (response) => {
         console.log(response);
         if (response != undefined || response != null) {
@@ -21,10 +31,10 @@
                     {
                         data: 'id',
                         render: (data, type, full, meta) => {
-                            let actions = `<a class="btn btn-primary btn-sm" onclick="SetUserFields('${data}');" data-toggle="modal" data-target="#Modaledit">
+                            let actions = `<a class="btn btn-primary btn-sm" onclick="SetCostumerModal(${data});" data-bs-toggle="modal" data-bs-target="#clientesHomeModal">
                                                 Editar
                                             </a>`;
-
+                            //console.log(full);
                             return actions;
                         }
                     },
