@@ -34,6 +34,52 @@ const HttpRequest = {
         $.ajax({
             url: `http://localhost:5202/${ruta}`,
             type: "POST",
+            contentType: "application/json",
+            data: data,
+            async: true,
+            dataType: "json"
+        }).done((data) => {
+            //rt = data;
+            callBack(data);
+        }).fail((xhr, textStatus, errorThrown) => {
+            console.log(xhr.responseText);
+            console.log(textStatus);
+        });
+        //return rt;
+    },
+
+    /**
+     * Esta función realiza una petición PUT ajax por url 
+     * @param ruta es la url del endpoint
+     * @param data es la data de respuesta de la petición
+     * @param callBack es una función para manipular la respuesta */
+    PutAsync: (ruta, data, callBack) => {
+        $.ajax({
+            url: `http://localhost:5202/${ruta}`,
+            type: "PUT",
+            contentType: "application/json",
+            data: data,
+            async: true,
+            dataType: "json"
+        }).done((data) => {
+            //rt = data;
+            callBack(data);
+        }).fail((xhr, textStatus, errorThrown) => {
+            console.log(xhr.responseText);
+            console.log(textStatus);
+        });
+        //return rt;
+    },
+
+    /**
+     * Esta función realiza una petición DELETE ajax por url 
+     * @param ruta es la url del endpoint
+     * @param data es la data de respuesta de la petición
+     * @param callBack es una función para manipular la respuesta */
+    DeleteAsync: (ruta, data, callBack) => {
+        $.ajax({
+            url: `http://localhost:5202/${ruta}`,
+            type: "DELETE",
             data: data,
             async: true,
             dataType: "json"
@@ -125,6 +171,23 @@ Utilities = {
             this.sweetAlertWarning('No se encontró él contenedor donde se tiene que pintar la tabla');
         }
     },
+
+    /**
+         * muestra un mensaje de confirmacion
+         * @param {any} mensaje mensaje que tendra la notificacion
+         */
+    sweetAlertSuccess: (mensaje) => Swal.fire('¡Exito!', mensaje, 'success'),
+    /**
+     * muestra un mensaje de error
+     * @param {any} mensaje mensaje que tendra la notificacion
+     */
+    sweetAlertError: (mensaje) => Swal.fire('¡Error!', mensaje, 'error'),
+    sweetAlertInfo: (mensaje) => Swal.fire('¡Información!', mensaje, 'info'),
+    /**
+     * muestra un mensaje de advertencia
+     * @param {any} mensaje mensaje que tendra la notificacion
+     */
+    sweetAlertWarning: (mensaje) => Swal.fire('¡Advertencia!', mensaje, 'warning'),
 }
 
 

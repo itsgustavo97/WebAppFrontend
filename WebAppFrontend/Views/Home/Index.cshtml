@@ -7,6 +7,9 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#clientesHomeModal">
+    Nuevo cliente
+</button>
 
 <div id="divForTable"></div>
 
@@ -16,21 +19,38 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Cliente</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clear()"></button>
       </div>
       <div class="modal-body">
+          <input type="hidden" id="IdCliente" value="0"/>
         <div class="mb-3">
             <label for="NombreCliente" class="form-label">Nombre</label>
             <input type="text" class="form-control" name="NombreCliente" id="NombreCliente" placeholder="Nombre">
         </div>
         <div class="mb-3">
             <label for="ApellidoCliente" class="form-label">Apellido</label>
-            <input type="text" class="form-control" name="ApellidoCliente" id="ApellidoCliente" placeholder="Nombre">
+            <input type="text" class="form-control" name="ApellidoCliente" id="ApellidoCliente" placeholder="Apellido">
+        </div>
+        <div class="mb-3">
+            <label for="EdadCliente" class="form-label">Edad</label>
+            <input type="text" class="form-control" name="EdadCliente" id="EdadCliente" placeholder="Edad">
+        </div>
+        <div class="mb-3">
+            <label for="DireccionCliente" class="form-label">Dirección</label>
+            <input type="text" class="form-control" name="DireccionCliente" id="DireccionCliente" placeholder="Dirección">
+        </div>
+        <div class="mb-3">
+            <label for="TelefonoCliente" class="form-label">Telefono</label>
+            <input type="text" class="form-control" name="TelefonoCliente" id="TelefonoCliente" placeholder="Telefono">
+        </div>
+        <div class="mb-3">
+            <label for="CorreoElectronicoCliente" class="form-label">Correo electrónico</label>
+            <input type="text" class="form-control" name="CorreoElectronicoCliente" id="CorreoElectronicoCliente" placeholder="Correo electrónico">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clear()">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="PostCliente()">Guardar</button>
       </div>
     </div>
   </div>
