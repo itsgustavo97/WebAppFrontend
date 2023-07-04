@@ -73,7 +73,7 @@ const GetClientes = (route = 'Cliente/GetAllAsync') => {
                 idTabla: 'dtUsuarios',
                 cabeceras: ['Nombre', 'Apellido', 'Edad', 'Email', 'Telefono', 'Acciones'],
                 estilos: 'width:100%',
-                claseCss: 'table table-hover',
+                claseCss: 'table table-striped table-hover',
                 propiedadesPersonalizadas: ''
             }, {
                 data: response,
