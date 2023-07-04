@@ -1,4 +1,4 @@
-﻿let clientesModal = new bootstrap.Modal($('#clientesHomeModal'));;
+﻿let clientesModal = new bootstrap.Modal($('#clientesHomeModal'));
 
 const SetCostumerModal = (id) => {
     clientesModal.show();
@@ -13,8 +13,8 @@ const SetCostumerModal = (id) => {
         $('#TelefonoCliente').val(numeroTelefonico);
         $('#CorreoElectronicoCliente').val(correoElectronico);
     });
-    
-}
+
+};
 
 const PostApiCliente = (jcliente) => {
     HttpRequest.PostAsync(`Cliente/Create`, jcliente, (resp) => {
@@ -28,7 +28,7 @@ const PostApiCliente = (jcliente) => {
             Utilities.sweetAlertWarning('No se pudo guardar');
         }
     });
-}
+};
 
 const PutApiCliente = (jcliente) => {
     HttpRequest.PutAsync(`Cliente/Update`, jcliente, (resp) => {
@@ -42,7 +42,7 @@ const PutApiCliente = (jcliente) => {
             Utilities.sweetAlertWarning('No se pudo guardar');
         }
     });
-}
+};
 
 const PostCliente = () => {
     const Id = $('#IdCliente').val(),
@@ -62,7 +62,7 @@ const PostCliente = () => {
         PutApiCliente(jcliente);
     }
 
-}
+};
 
 const GetClientes = (route = 'Cliente/GetAllAsync') => {
     HttpRequest.GetAsync(route, null, (response) => {
@@ -100,11 +100,11 @@ const GetClientes = (route = 'Cliente/GetAllAsync') => {
         } else {
             Utilities.sweetAlertWarning('No se pudo realizar la peticion al servidor');
         }
-    })
-}
+    });
+};
 
 //Clear modal inputs
-const clear = () => {
+$('.btnClearModalClientes').click(() => {
     $('#IdCliente').val(0);
     $('#NombreCliente').val('');
     $('#ApellidoCliente').val('');
@@ -112,7 +112,7 @@ const clear = () => {
     $('#DireccionCliente').val('');
     $('#TelefonoCliente').val('');
     $('#CorreoElectronicoCliente').val('');
-}
+});
 
 /** document ready modern */
 $(() => {
