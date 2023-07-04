@@ -130,10 +130,10 @@ Utilities = {
             alert('No se encontro el input select');
             return;
         }
-        HttpRequest.GetAsync(url, null, ({ Data, Message }) => {
-            if (Data != null) {
+        HttpRequest.GetAsync(url, null, (resp) => {
+            if (resp != null) {
                 let contentHtml = '<option value="">Seleccione una opción</option>', objetoActual = null, mensaje2 = '';
-                Data.map((item, index, array) => {
+                resp.map((item, index, array) => {
                     objetoActual = item;
                     mensaje2 = texto2 != null ? `, ${objetoActual[texto2]}` : '';
                     contentHtml += `<option value="${objetoActual[value]}">${objetoActual[texto]}${mensaje2}</option>`;
@@ -145,7 +145,7 @@ Utilities = {
                     $(`#${idSelect}`).attr(nameMethod, nameFunction);
                 }
             } else {
-                alert(Message);
+                alert('Error al obtener la data para el select');
             }
         })
     },

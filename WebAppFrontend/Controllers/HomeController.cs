@@ -18,6 +18,21 @@ namespace WebAppFrontend.Controllers
             return View();
         }
 
+        public IActionResult Clientes()
+        {
+            return View();
+        }
+
+        public IActionResult Cuentas()
+        {
+            return View();
+        }
+
+        public IActionResult Transferencias()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

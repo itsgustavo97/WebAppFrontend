@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Transferencias";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to .NET 6</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#tranfersModal">
+    Nueva transferencia
+</button>
+
+<div id="divForTableTransfers"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="tranfersModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Transferencia</h5>
+                <button type="button" class="btn-close btnClearModalTransfers" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="IdTransferencia" value="0" />
+                <div class="mb-3">
+                    <label for="CuentaOrigen" class="form-label">Número de cuenta origen</label>
+                    <select class="form-select slCuentasTransferencias" id="CuentaOrigen"></select>
+                </div>
+                <div class="mb-3">
+                    <label for="CuentaDestino" class="form-label">Número de cuenta destino</label>
+                    <select class="form-select slCuentasTransferencias" id="CuentaDestino"></select>
+                </div>
+                <div class="mb-3">
+                    <label for="MontoTransferencia" class="form-label">Monto</label>
+                    <input type="text" class="form-control" name="MontoTransferencia" id="MontoTransferencia" placeholder="Monto a transferir" pattern="[0-9]{1,5}" required />
+                </div>
+                <div class="mb-3">
+                    <label for="MotivoTransferencia" class="form-label">Motivo</label>
+                    <input type="text" class="form-control" name="MotivoTransferencia" id="MotivoTransferencia" placeholder="Motivo de la transferencia" required />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btnClearModalTransfers" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="PostTransfer()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/HomeTransfers.js"></script>
