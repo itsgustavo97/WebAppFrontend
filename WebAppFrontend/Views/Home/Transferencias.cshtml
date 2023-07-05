@@ -8,14 +8,14 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#tranfersModal">
+<button type="button" class="btn btn-primary my-3" id="btnTransfersModal" data-bs-toggle="modal" data-bs-target="#transfersModal">
     Nueva transferencia
 </button>
 
 <div id="divForTableTransfers"></div>
 
 <!-- Modal -->
-<div class="modal fade" id="tranfersModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="transfersModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -43,7 +43,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btnClearModalTransfers" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="PostTransfer()">Guardar</button>
+                <button type="button" class="btn btn-success" onclick="PostTransfer()">Guardar</button>
             </div>
         </div>
     </div>

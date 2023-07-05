@@ -51,9 +51,12 @@ const PostCliente = () => {
         Edad = $('#EdadCliente').val(),
         Direccion = $('#DireccionCliente').val(),
         NumeroTelefonico = $('#TelefonoCliente').val(),
-        CorreoElectronico = $('#CorreoElectronicoCliente').val(),
+        CorreoElectronico = $('#CorreoElectronicoCliente').val();
         //Construct objeto as model class
-        Cliente = { Id, Nombre, Apellido, Edad, Direccion, NumeroTelefonico, CorreoElectronico };
+    const Cliente = { Id, Nombre, Apellido, Edad, Direccion, NumeroTelefonico, CorreoElectronico };
+    //Se valida el modelo antes de enviar al petición
+    if (Cliente.Nombre == '' || Cliente.Apellido == '' || Cliente.Edad == '' || Cliente.Direccion == '' || Cliente.NumeroTelefonico == '' || Cliente.CorreoElectronico == '')
+        return Utilities.sweetAlertWarning('Hay campos vacios, revisa el formulario');
     //Convert to JSON
     let jcliente = JSON.stringify(Cliente);
     if (Id == 0) {

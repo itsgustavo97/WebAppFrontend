@@ -1,12 +1,23 @@
 ﻿let transfersModal = new bootstrap.Modal($('#transfersModal'));
 
-const SetTransferModal = (id) => {
+$('#btnTransfersModal').click(() => {
     Utilities.LlenarSelectByUrl({ //Set select Cuentas
         url: 'Cuenta/GetAllAsync',
         idSelect: 'CuentaOrigen',
         value: 'id',
         texto: 'numeroCuenta',
     });
+    //
+    Utilities.LlenarSelectByUrl({ //Set select Cuentas
+        url: 'Cuenta/GetAllAsync',
+        idSelect: 'CuentaDestino',
+        value: 'id',
+        texto: 'numeroCuenta',
+    });
+});
+
+const SetTransferModal = (id) => {
+    $('#btnTransfersModal').click();
     transfersModal.show();
     HttpRequest.GetAsync(`Transferencia/GetById/${id}`, null, (resp) => {
         const { id, idCuentaOrigen, idCuentaDestino, monto, motivo } = resp;
@@ -23,6 +34,7 @@ const SetTransferModal = (id) => {
 const PostApiTransfer = (jtransfer) => {
     HttpRequest.PostAsync(`Transferencia/Create`, jtransfer, (resp) => {
         //console.log(resp);
+        //debugger;
         if (resp == 1) {
             $('.btnClearModalTransfers').click();
             transfersModal.hide();
@@ -37,6 +49,7 @@ const PostApiTransfer = (jtransfer) => {
 const PutApiTransfer = (jtransfer) => {
     HttpRequest.PutAsync(`Transferencia/Update`, jtransfer, (resp) => {
         //console.log(resp);
+        //debugger;
         if (resp == 1) {
             $('.btnClearModalTransfers').click();
             transfersModal.hide();
@@ -53,9 +66,14 @@ const PostTransfer = () => {
         IdCuentaOrigen = $('#CuentaOrigen').val(),
         IdCuentaDestino = $('#CuentaDestino').val(),
         Monto = $('#MontoTransferencia').val(),
-        Motivo = $('#MotivoTransferencia').val(),
+        Motivo = $('#MotivoTransferencia').val();
         //Construct objeto as model class
-        Transfer = { Id, IdCuentaOrigen, IdCuentaDestino, Monto, Motivo };
+    const Transfer = { Id, IdCuentaOrigen, IdCuentaDestino, Monto, Motivo };
+    //Se valida el modelo antes de enviar al petición
+    if (Transfer.IdCuentaDestino == '' || Transfer.IdCuentaOrigen == '' || Transfer.Monto == '' || Transfer.Motivo == '')
+        return Utilities.sweetAlertWarning('Hay campos vacios, revisa el formulario');
+    if (Transfer.IdCuentaOrigen == Transfer.IdCuentaDestino)
+        return Utilities.sweetAlertWarning('No se puede transferir a la misma cuenta');
     //Convert to JSON
     let jtransfer = JSON.stringify(Transfer);
     if (Id == 0) {
@@ -68,7 +86,7 @@ const PostTransfer = () => {
 
 const GetTransfers = (route = 'Transferencia/GetAllAsync') => {
     HttpRequest.GetAsync(route, null, (response) => {
-        console.log(response);
+        //console.log(response);
         if (response != undefined || response != null) {
             Utilities.GenerarTabla({
                 idDiv: 'divForTableTransfers',

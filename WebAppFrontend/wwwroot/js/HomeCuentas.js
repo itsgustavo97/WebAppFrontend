@@ -43,9 +43,12 @@ const PutApiCuenta = (jcuenta) => {
 const PostCuenta = () => {
     const Id = $('#IdCuenta').val(),
         NumeroCuenta = $('#NumeroCuenta').val(),
-        Saldo = $('#SaldoCuenta').val(),
+        Saldo = $('#SaldoCuenta').val();
         //Construct objeto as model class
-        Cuenta = { Id, NumeroCuenta, Saldo };
+    const Cuenta = { Id, NumeroCuenta, Saldo };
+    //Se valida el modelo antes de enviar al petición
+    if (Cuenta.NumeroCuenta == '' || Cuenta.Saldo == '')
+        return Utilities.sweetAlertWarning('Hay campos vacios, revisa el formulario');
     //Convert to JSON
     let jcuenta = JSON.stringify(Cuenta);
     if (Id == 0) {
