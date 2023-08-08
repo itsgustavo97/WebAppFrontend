@@ -1,4 +1,4 @@
-﻿let transfersModal = new bootstrap.Modal($('#transfersModal'));
+﻿let rolesModal = new bootstrap.Modal($('#transfersModal'));
 
 $('#btnTransfersModal').click(() => {
     Utilities.LlenarSelectByUrl({ //Set select Cuentas
@@ -18,7 +18,7 @@ $('#btnTransfersModal').click(() => {
 
 const SetTransferModal = (id) => {
     $('#btnTransfersModal').click();
-    transfersModal.show();
+    rolesModal.show();
     HttpRequest.GetAsync(`Transferencia/GetById/${id}`, null, (resp) => {
         const { id, idCuentaOrigen, idCuentaDestino, monto, motivo } = resp;
         //console.log(resp);
@@ -37,9 +37,9 @@ const PostApiTransfer = (jtransfer) => {
         //debugger;
         if (resp == 1) {
             $('.btnClearModalTransfers').click();
-            transfersModal.hide();
+            rolesModal.hide();
             Utilities.sweetAlertSuccess('Se guardó con exito');
-            GetTransfers();
+            GetRoles();
         } else {
             Utilities.sweetAlertWarning('No se pudo guardar');
         }
@@ -52,9 +52,9 @@ const PutApiTransfer = (jtransfer) => {
         //debugger;
         if (resp == 1) {
             $('.btnClearModalTransfers').click();
-            transfersModal.hide();
+            rolesModal.hide();
             Utilities.sweetAlertSuccess('Se guardó con exito');
-            GetTransfers();
+            GetRoles();
         } else {
             Utilities.sweetAlertWarning('No se pudo guardar');
         }
@@ -84,7 +84,7 @@ const PostTransfer = () => {
 
 };
 
-const GetTransfers = (route = 'Transferencia/GetAllAsync') => {
+const GetRoles = (route = 'Transferencia/GetAllAsync') => {
     HttpRequest.GetAsync(route, null, (response) => {
         //console.log(response);
         if (response != undefined || response != null) {
@@ -138,5 +138,5 @@ $('.btnClearModalTransfers').click(() => {
 
 /** document ready modern */
 $(() => {
-    GetTransfers();
+    GetRoles();
 });

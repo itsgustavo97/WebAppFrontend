@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Roles";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#rolesModal">
+    Nuevo rol
+</button>
+
+<div id="divForTableRoles"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="rolesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Rol</h5>
+                <button type="button" class="btn-close btnClearModalRoles" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="IdRole" value="" />
+                <div class="mb-3">
+                    <label for="NombreRole" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="NombreRole" id="NombreRole" placeholder="Nombre" pattern="[a-zA-Z]{4,30}" minlenght="4" maxlength="30" required/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btnClearModalRoles" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="PostRole()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/HomeRoles.js"></script>

@@ -9,11 +9,11 @@ const HttpRequest = {
      * @param ruta es la url del endpoint
      * @param data es la data de respuesta de la petición
      * @param callBack es una función para manipular la respuesta */
-    GetAsync: (ruta, data, callBack) => {
+    GetAsync: (ruta, payload, callBack) => {
         $.ajax({
-            url: `http://localhost:5202/${ruta}`,
+            url: `https://localhost:7195/${ruta}`,
             type: "GET",
-            data: data,
+            data: payload,
             async: true
         }).done((data) => {
             //rt = data;
@@ -32,7 +32,7 @@ const HttpRequest = {
      * @param callBack es una función para manipular la respuesta */
     PostAsync: (ruta, data, callBack) => {
         $.ajax({
-            url: `http://localhost:5202/${ruta}`,
+            url: `https://localhost:7195/${ruta}`,
             type: "POST",
             contentType: "application/json",
             data: data,
@@ -55,7 +55,7 @@ const HttpRequest = {
      * @param callBack es una función para manipular la respuesta */
     PutAsync: (ruta, data, callBack) => {
         $.ajax({
-            url: `http://localhost:5202/${ruta}`,
+            url: `https://localhost:7195/${ruta}`,
             type: "PUT",
             contentType: "application/json",
             data: data,
@@ -78,7 +78,7 @@ const HttpRequest = {
      * @param callBack es una función para manipular la respuesta */
     DeleteAsync: (ruta, data, callBack) => {
         $.ajax({
-            url: `http://localhost:5202/${ruta}`,
+            url: `https://localhost:7195/${ruta}`,
             type: "DELETE",
             data: data,
             async: true,

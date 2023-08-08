@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Usuarios";
+}
+<h1>@ViewData["Title"]</h1>
+
+<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#usuariosModal">
+    Nuevo usuario
+</button>
+
+<div id="divForTableUsuarios"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="usuariosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Usuario</h5>
+                <button type="button" class="btn-close btnClearModalUsuarios" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="IdUsuario" value="" />
+                <div class="mb-3">
+                    <label for="NombreUsuario" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="NombreUsuario" id="NombreUsuario" placeholder="Nombre" pattern="[a-zA-Z0-9]{4,30}" minlenght="4" maxlength="30" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="ApellidoUsuario" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" name="ApellidoUsuario" id="ApellidoUsuario" placeholder="Apellido" pattern="[a-zA-Z0-9]{4,30}" minlenght="4" maxlength="30" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="UsernameUsuario" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="UsernameUsuario" id="UsernameUsuario" placeholder="Username" pattern="[a-zA-Z0-9]{4,30}" minlenght="4" maxlength="30" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="UsuarioActivo" class="form-label">Estado</label>
+                    <select class="form-select" name="UsuarioActivo" id="UsuarioActivo">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="CorreoElectronicoUsuario" class="form-label">Correo electrónico</label>
+                    <input type="text" class="form-control" name="CorreoElectronicoUsuario" id="CorreoElectronicoUsuario" placeholder="Correo electrónico" pattern="[a-zA-Z0-9.-_]{4,100}" minlenght="4" maxlength="100" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="CorreoConfirmadoUsuario" class="form-label">Correo electrónico confirmado</label>
+                    <select class="form-select" name="CorreoConfirmadoUsuario" id="CorreoConfirmadoUsuario" required>
+                        <option value="1">Si</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btnClearModalUsuarios" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="PostUsuario()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/HomeUsuarios.js"></script>

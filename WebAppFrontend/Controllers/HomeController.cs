@@ -18,12 +18,12 @@ namespace WebAppFrontend.Controllers
             return View();
         }
 
-        public IActionResult Clientes()
+        public IActionResult Usuarios()
         {
             return View();
         }
 
-        public IActionResult Cuentas()
+        public IActionResult Roles()
         {
             return View();
         }
