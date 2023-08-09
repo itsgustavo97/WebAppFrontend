@@ -3,8 +3,8 @@
 const SetRoleModal = (id) => {
     rolesModal.show();
     HttpRequest.GetAsync(`api/Roles/${id}`, null, (resp) => {
-        const { id, name } = resp;
-        console.log(resp);
+        const { id, name } = resp.data;
+        //console.log(resp);
         $('#IdRole').val(id);
         $('#NombreRole').val(name);
     });
@@ -13,37 +13,29 @@ const SetRoleModal = (id) => {
 
 const PostApiRole = (jrole) => {
     HttpRequest.PostAsync(`api/Roles/CreateRoleAsync`, jrole, (resp) => {
-        //console.log(resp);
-        $('.btnClearModalRoles').click();
-        rolesModal.hide();
-        Utilities.sweetAlertSuccess('Se guardó con exito');
-        GetRoles();
-        //if (resp == 1) {
-        //    $('.btnClearModalRoles').click();
-        //    rolesModal.hide();
-        //    Utilities.sweetAlertSuccess('Se guardó con exito');
-        //    GetRoles();
-        //} else {
-        //    Utilities.sweetAlertWarning('No se pudo guardar');
-        //}
+        console.log(resp);
+        if (resp.textStatus == "success") {
+            $('.btnClearModalRoles').click();
+            rolesModal.hide();
+            Utilities.sweetAlertSuccess('Se guardó con exito');
+            GetRoles();
+        } else {
+            Utilities.sweetAlertWarning('No se pudo guardar');
+        }
     });
 };
 
 const PutApiRole = (jrole) => {
     HttpRequest.PutAsync(`api/Roles/UpdateRoleAsync`, jrole, (resp) => {
-        //console.log(resp);
-        $('.btnClearModalRoles').click();
-        rolesModal.hide();
-        Utilities.sweetAlertSuccess('Se guardó con exito');
-        GetRoles();
-        //if (resp == 1) {
-        //    $('.btnClearModalRoles').click();
-        //    rolesModal.hide();
-        //    Utilities.sweetAlertSuccess('Se guardó con exito');
-        //    GetRoles();
-        //} else {
-        //    Utilities.sweetAlertWarning('No se pudo guardar');
-        //}
+        console.log(resp);
+        if (resp.textStatus == "success") {
+            $('.btnClearModalRoles').click();
+            rolesModal.hide();
+            Utilities.sweetAlertSuccess('Se guardó con exito');
+            GetRoles();
+        } else {
+            Utilities.sweetAlertWarning('No se pudo guardar');
+        }
     });
 };
 
@@ -67,8 +59,8 @@ const PostRole = () => {
 
 const GetRoles = (route = 'api/Roles/') => {
     HttpRequest.GetAsync(route, null, (response) => {
-        console.log(response);
-        if (response != undefined || response != null) {
+        //console.log(response.data);
+        if (response.data != undefined || response.data != null) {
             Utilities.GenerarTabla({
                 idDiv: 'divForTableRoles',
                 idTabla: 'dtRoles',
@@ -77,7 +69,7 @@ const GetRoles = (route = 'api/Roles/') => {
                 claseCss: 'table table-striped table-hover',
                 propiedadesPersonalizadas: ''
             }, {
-                data: response,
+                data: response.data,
                 language: lenguajeEspanniolDataTable,
                 columns: [
                     { data: 'name' },

@@ -7,42 +7,63 @@ const HttpRequest = {
     /**
      * Esta función realiza una petición GET ajax por url 
      * @param ruta es la url del endpoint
-     * @param data es la data de respuesta de la petición
+     * @param payload es la data de la petición
      * @param callBack es una función para manipular la respuesta */
     GetAsync: (ruta, payload, callBack) => {
         $.ajax({
             url: `https://localhost:7195/${ruta}`,
             type: "GET",
             data: payload,
-            async: true
-        }).done((data) => {
-            //rt = data;
-            callBack(data);
+            async: true,
+            statusCode: {
+                400: () => {
+                    console.log("Bad request: 400");
+                },
+                404: () => {
+                    console.log("Not found request: 404");
+                },
+                200: () => {
+                    console.log("Ok request: 200");
+                }
+            }
+        }).done((data, textStatus) => {
+            const response = { data, textStatus };
+            callBack(response);
         }).fail((xhr, textStatus, errorThrown) => {
+            console.log(xhr);
             console.log(textStatus);
-            console.log(xhr.responseText);
         });
-        //return rt;
     },
 
     /**
      * Esta función realiza una petición POST ajax por url 
      * @param ruta es la url del endpoint
-     * @param data es la data de respuesta de la petición
+     * @param payload es la data de la petición
      * @param callBack es una función para manipular la respuesta */
-    PostAsync: (ruta, data, callBack) => {
+    PostAsync: (ruta, payload, callBack) => {
         $.ajax({
             url: `https://localhost:7195/${ruta}`,
             type: "POST",
             contentType: "application/json",
-            data: data,
+            data: payload,
             async: true,
-            dataType: "json"
-        }).done((data) => {
-            //rt = data;
-            callBack(data);
+            dataType: "json",
+            statusCode: {
+                400: () => {
+                    console.log("Bad request: 400");
+                },
+                404: () => {
+                    console.log("Not found request: 404");
+                },
+                200: () => {
+                    console.log("Ok request: 200");
+                }
+            }
+        }).done((data, textStatus) => {
+            const response = { data, textStatus };
+            callBack(response);
         }).fail((xhr, textStatus, errorThrown) => {
-            console.log(xhr.responseText);
+            console.log(xhr);
             console.log(textStatus);
         });
         //return rt;
@@ -51,46 +72,66 @@ const HttpRequest = {
     /**
      * Esta función realiza una petición PUT ajax por url 
      * @param ruta es la url del endpoint
-     * @param data es la data de respuesta de la petición
+     * @param payload es la data de la petición
      * @param callBack es una función para manipular la respuesta */
-    PutAsync: (ruta, data, callBack) => {
+    PutAsync: (ruta, payload, callBack) => {
         $.ajax({
             url: `https://localhost:7195/${ruta}`,
             type: "PUT",
             contentType: "application/json",
-            data: data,
+            data: payload,
             async: true,
-            dataType: "json"
-        }).done((data) => {
-            //rt = data;
-            callBack(data);
+            dataType: "json",
+            statusCode: {
+                400: () => {
+                    console.log("Bad request: 400");
+                },
+                404: () => {
+                    console.log("Not found request: 404");
+                },
+                200: () => {
+                    console.log("Ok request: 200");
+                }
+            }
+        }).done((data, textStatus) => {
+            const response = { data, textStatus };
+            callBack(response);
         }).fail((xhr, textStatus, errorThrown) => {
-            console.log(xhr.responseText);
+            console.log(xhr);
             console.log(textStatus);
         });
-        //return rt;
     },
 
     /**
      * Esta función realiza una petición DELETE ajax por url 
      * @param ruta es la url del endpoint
-     * @param data es la data de respuesta de la petición
+     * @param payload es la data de la petición
      * @param callBack es una función para manipular la respuesta */
-    DeleteAsync: (ruta, data, callBack) => {
+    DeleteAsync: (ruta, payload, callBack) => {
         $.ajax({
             url: `https://localhost:7195/${ruta}`,
             type: "DELETE",
-            data: data,
+            data: payload,
             async: true,
-            dataType: "json"
-        }).done((data) => {
-            //rt = data;
-            callBack(data);
+            dataType: "json",
+            statusCode: {
+                400: () => {
+                    console.log("Bad request: 400");
+                },
+                404: () => {
+                    console.log("Not found request: 404");
+                },
+                200: () => {
+                    console.log("Ok request: 200");
+                }
+            }
+        }).done((data, textStatus) => {
+            const response = { data, textStatus };
+            callBack(response);
         }).fail((xhr, textStatus, errorThrown) => {
-            console.log(xhr.responseText);
+            console.log(xhr);
             console.log(textStatus);
         });
-        //return rt;
     },
 },
 

@@ -3,7 +3,7 @@
 const SetUsuarioModal = (id) => {
     usuarioModal.show();
     HttpRequest.GetAsync(`api/Usuario/GetUsuarioByIdAsync/${id}`, null, (resp) => {
-        const { id, nombre, apellido, userName, activo, email, emailConfirmed } = resp;
+        const { id, nombre, apellido, userName, activo, email, emailConfirmed } = resp.data;
         //console.log(resp);
         $('#IdUsuario').val(id);
         $('#NombreUsuario').val(nombre);
@@ -18,37 +18,29 @@ const SetUsuarioModal = (id) => {
 
 const PostApiUsuario = (jusuario) => {
     HttpRequest.PostAsync(`api/Usuario/CreateUsuarioAsync`, jusuario, (resp) => {
-        //console.log(resp);
-        $('.btnClearModalUsuarios').click();
-        usuarioModal.hide();
-        Utilities.sweetAlertSuccess('Se guardó con exito');
-        GetUsuarios();
-        //if (resp == 1) {
-        //    clear();
-        //    usuarioModal.hide();
-        //    Utilities.sweetAlertSuccess('Se guardó con exito');
-        //    GetUsuarios();
-        //} else {
-        //    Utilities.sweetAlertWarning('No se pudo guardar');
-        //}
+        console.log(resp);
+        if (resp.textStatus == "success") {
+            $('.btnClearModalUsuarios').click();
+            usuarioModal.hide();
+            Utilities.sweetAlertSuccess('Se guardó con exito');
+            GetUsuarios();
+        } else {
+            Utilities.sweetAlertWarning('No se pudo guardar');
+        }
     });
 };
 
 const PutApiUsuario = (jusuario) => {
     HttpRequest.PutAsync(`api/Usuario/UpdateUsuarioAsync`, jusuario, (resp) => {
         //console.log(resp);
-        $('.btnClearModalUsuarios').click();
-        usuarioModal.hide();
-        Utilities.sweetAlertSuccess('Se guardó con exito');
-        GetUsuarios();
-        //if (resp == 1) {
-        //    clear();
-        //    usuarioModal.hide();
-        //    Utilities.sweetAlertSuccess('Se guardó con exito');
-        //    GetUsuarios();
-        //} else {
-        //    Utilities.sweetAlertWarning('No se pudo guardar');
-        //}
+        if (resp.textStatus == "success") {
+            $('.btnClearModalUsuarios').click();
+            usuarioModal.hide();
+            Utilities.sweetAlertSuccess('Se guardó con exito');
+            GetUsuarios();
+        } else {
+            Utilities.sweetAlertWarning('No se pudo guardar');
+        }
     });
 };
 
@@ -78,7 +70,7 @@ const PostUsuario = () => {
 const GetUsuarios = (route = 'api/Usuario/GetAllUsuariosAsync') => {
     HttpRequest.GetAsync(route, null, (response) => {
         //console.log(response);
-        if (response != undefined || response != null) {
+        if (response != undefined || response.textStatus == "success") {
             Utilities.GenerarTabla({
                 idDiv: 'divForTableUsuarios',
                 idTabla: 'dtUsuarios',
@@ -87,7 +79,7 @@ const GetUsuarios = (route = 'api/Usuario/GetAllUsuariosAsync') => {
                 claseCss: 'table table-striped table-hover',
                 propiedadesPersonalizadas: ''
             }, {
-                data: response,
+                data: response.data,
                 language: lenguajeEspanniolDataTable,
                 columns: [
                     { data: 'nombre' },
