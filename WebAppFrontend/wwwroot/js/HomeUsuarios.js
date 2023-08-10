@@ -85,9 +85,27 @@ const GetUsuarios = (route = 'api/Usuario/GetAllUsuariosAsync') => {
                     { data: 'nombre' },
                     { data: 'apellido' },
                     { data: 'userName' },
-                    { data: 'activo' },
+                    {
+                        data: 'activo',
+                        render: (data, type, full, meta) => {
+                            let actions = `<a class="btn btn-outline-dark btn-sm" onclick="">
+                                                <i class="fa-solid fa-toggle-${data ? 'on' : 'off'}"></i>
+                                            </a>`;
+                            //console.log(full);
+                            return actions;
+                        }
+                    },
                     { data: 'email' },
-                    { data: 'emailConfirmed' },
+                    {
+                        data: 'emailConfirmed',
+                        render: (data, type, full, meta) => {
+                            let actions = `<a class="btn btn-outline-dark btn-sm" onclick="">
+                                                <i class="fa-solid fa-toggle-${data ? 'on': 'off'}"></i>
+                                            </a>`;
+                            //console.log(full);
+                            return actions;
+                        }
+                    },
                     {
                         data: 'id',
                         render: (data, type, full, meta) => {

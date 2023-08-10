@@ -2,7 +2,48 @@
     ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to .NET 6</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card" style="height: 100% !important;">
+          <div class="card-body rounded" style="background-color: #1e3050 !important;">
+            <div class="text-center text-white">
+                <h1 class="display-6">Contracargos</h1>
+                <p>Learn about building Web apps with ASP.NET Core.</p>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+         <div class="card">
+          <div class="card-body">
+            <div class="px-lg-5">
+                <h1 class="display-5">Welcome to .NET 6</h1>
+                <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+                <div class="d-grid gap-2 mb-2">
+                    <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-g"></i> Iniciar sesión con Google</button>
+                </div>
+                <div class="text-center mb-2">
+                    <hr/>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput2" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com">
+                </div>
+                <div class="mb-2">
+                    <span class="fs-6">¿Olvidaste tu contraseña?</span>
+                </div>
+                <div class="d-grid gap-2 mb-3">
+                    <input class="btn btn-primary" type="button" value="Iniciar sesión">
+                </div>
+                <div class="mb-3">
+                    <span class="fs-6">¿No tienes una cuenta? <a class=""><strong>registrate</strong></a></span>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
 </div>
