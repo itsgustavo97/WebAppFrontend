@@ -4,7 +4,7 @@ const SetUsuarioModal = (id) => {
     usuarioModal.show();
     HttpRequest.GetAsync(`api/Usuario/GetUsuarioByIdAsync/${id}`, null, (resp) => {
         const { id, nombre, apellido, userName, activo, email, emailConfirmed } = resp.data;
-        //console.log(resp);
+        console.log(resp);
         $('#IdUsuario').val(id);
         $('#NombreUsuario').val(nombre);
         $('#ApellidoUsuario').val(apellido);

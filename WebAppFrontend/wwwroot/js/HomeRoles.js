@@ -42,11 +42,11 @@ const PutApiRole = (jrole) => {
 const PostRole = () => {
     const id = $('#IdRole').val(),
         name = $('#NombreRole').val();
-        //Construct objeto as model class
-    const Role = { id, name };
     //Se valida el modelo antes de enviar al petición
-    if (Role.name == '')
+    if (name == '')
         return Utilities.sweetAlertWarning('Hay campos vacios, revisa el formulario');
+    //Construye el objeto del request
+    const Role = { id, name };
     //Convert to JSON
     let jrole = JSON.stringify(Role);
     if (id == '') {

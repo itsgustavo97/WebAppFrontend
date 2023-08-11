@@ -19,6 +19,9 @@ const HttpRequest = {
                 400: () => {
                     console.log("Bad request: 400");
                 },
+                401: () => {
+                    console.log("Anauthorized request: 401");
+                },
                 404: () => {
                     console.log("Not found request: 404");
                 },
@@ -27,10 +30,10 @@ const HttpRequest = {
                 }
             }
         }).done((data, textStatus) => {
-            const response = { data, textStatus };
-            callBack(response);
+            callBack({ data, textStatus });
         }).fail((xhr, textStatus, errorThrown) => {
-            console.log(xhr);
+            callBack({ xhr, textStatus })
+            console.log(xhr.responseJSON);
             console.log(textStatus);
         });
     },
@@ -52,6 +55,9 @@ const HttpRequest = {
                 400: () => {
                     console.log("Bad request: 400");
                 },
+                401: () => {
+                    console.log("Anauthorized request: 401");
+                },
                 404: () => {
                     console.log("Not found request: 404");
                 },
@@ -60,9 +66,9 @@ const HttpRequest = {
                 }
             }
         }).done((data, textStatus) => {
-            const response = { data, textStatus };
-            callBack(response);
+            callBack({ data, textStatus })
         }).fail((xhr, textStatus, errorThrown) => {
+            callBack({ xhr, textStatus })
             console.log(xhr);
             console.log(textStatus);
         });
@@ -86,6 +92,9 @@ const HttpRequest = {
                 400: () => {
                     console.log("Bad request: 400");
                 },
+                401: () => {
+                    console.log("Anauthorized request: 401");
+                },
                 404: () => {
                     console.log("Not found request: 404");
                 },
@@ -94,9 +103,9 @@ const HttpRequest = {
                 }
             }
         }).done((data, textStatus) => {
-            const response = { data, textStatus };
-            callBack(response);
+            callBack({ data, textStatus })
         }).fail((xhr, textStatus, errorThrown) => {
+            callBack({ xhr, textStatus })
             console.log(xhr);
             console.log(textStatus);
         });
@@ -118,6 +127,9 @@ const HttpRequest = {
                 400: () => {
                     console.log("Bad request: 400");
                 },
+                401: () => {
+                    console.log("Anauthorized request: 401");
+                },
                 404: () => {
                     console.log("Not found request: 404");
                 },
@@ -126,9 +138,9 @@ const HttpRequest = {
                 }
             }
         }).done((data, textStatus) => {
-            const response = { data, textStatus };
-            callBack(response);
+            callBack({ data, textStatus })
         }).fail((xhr, textStatus, errorThrown) => {
+            callBack({ xhr, textStatus })
             console.log(xhr);
             console.log(textStatus);
         });
